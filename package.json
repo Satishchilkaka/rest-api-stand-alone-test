@@ -1,0 +1,24 @@
+{
+  "name": "rest-api-stand-alone-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha **/*.spec.js",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "sinon": "^15.0.1",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "axios": "^1.3.2",
+    "moment": "^2.29.4",
+    "supertest": "^6.3.3"
+  }
+}
