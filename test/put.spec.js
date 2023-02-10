@@ -6,12 +6,12 @@ const updatedObject = require('../data/update-object.json');
 
 const createObject = require('../data/create-object.json');
 
-describe('PATCH', () => {
+describe('PUT', () => {
     const baseUrl = 'https://api.restful-api.dev/objects'
     const date = new Date()
     const newObjectId = []
     const createdObject = []
-    describe('Patch', function () {
+    describe('Put', function () {
         it('Should get status code 405', function (done) {
             request(baseUrl)
                 .put('/')
