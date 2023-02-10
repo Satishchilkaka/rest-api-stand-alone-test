@@ -44,7 +44,7 @@ describe('PATCH', () => {
               })
           });
 
-          it.skip('Should have header in response', function (done) {
+          it('Should have header in response', function (done) {
             request(baseUrl)
               .patch('/tests')
               .set('Accept', 'application/json')
