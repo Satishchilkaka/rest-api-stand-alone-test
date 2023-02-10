@@ -11,12 +11,46 @@ describe('GET', () => {
   const id5 = '5'
   const id10 = '10'
   describe('Get all objects', function () {
+    it('Should have status code 404 ', function (done) {
+      // not found
+      request(baseUrl)
+        .get('123er/test')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
 
-    it('Should have JSON response', function (done) {
+        .expect(function (response) {
+          expect(response.status).to.equal(404)
+        })
+        .end(function (err) {
+          if (err) {
+            throw err;
+          }
+          done();
+        })
+    });
+    it('Should have content type json ', function (done) {
+      // not found
       request(baseUrl)
         .get('/')
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/, done)
+
+    });
+    it('Should have JSON response', function (done) {
+      request(baseUrl)
+        .get('/')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(function (response) {
+          expect(response.body).to.be.an('array')
+
+        })
+        .end(function (err) {
+          if (err) {
+            throw err;
+          }
+          done();
+        })
 
     });
     it('Should have 200 status code', function (done) {
@@ -24,7 +58,7 @@ describe('GET', () => {
         .get('/')
         .set('Accept', 'application/json')
         .expect(function (response) {
-          expect(response.status).to.equal(200)
+          expect(response.status).deep.equal(200)
         })
         .end(function (err) {
           if (err) {
@@ -82,6 +116,7 @@ describe('GET', () => {
         .get(`?id=${id3}&id=${id5}&id=${id10}`)
         .set('Accept', 'application/json')
         .expect(function (response) {
+          console.log(response.body)
           expect(response.body).to.eql(id3id5id10)
           // assert.strictEqual(response.body.length, 13)
         })
@@ -219,7 +254,7 @@ describe('GET', () => {
           expect(response.body.data.price).to.eql(id7.data.price)
           expect(responseCpuModel).to.eql(cpuModel)
           expect(responseHardDiskSpace).to.eql(hardDiskSpace)
-         // console.log(responseHardDiskSpace)
+          // console.log(responseHardDiskSpace)
         })
         .end(function (err) {
           if (err) {
