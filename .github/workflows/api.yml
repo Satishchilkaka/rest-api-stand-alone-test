@@ -1,0 +1,19 @@
+name: API TEST
+on:
+  pull_request:
+
+jobs:
+  api-test:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm install
+      - name: run test
+        run: npm run test

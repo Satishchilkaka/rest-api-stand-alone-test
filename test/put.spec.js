@@ -6,12 +6,12 @@ const updatedObject = require('../data/update-object.json');
 
 const createObject = require('../data/create-object.json');
 
-describe('PUT', () => {
+describe('PATCH', () => {
     const baseUrl = 'https://api.restful-api.dev/objects'
     const date = new Date()
     const newObjectId = []
     const createdObject = []
-    describe('Update', function () {
+    describe('Patch', function () {
         it('Should get status code 405', function (done) {
             request(baseUrl)
                 .put('/')
@@ -46,7 +46,7 @@ describe('PUT', () => {
                 });
         })
         it('Should create an new object with full data', function (done) {
-         
+
             request(baseUrl)
                 .post('/')
                 .send(createObject)
@@ -79,7 +79,6 @@ describe('PUT', () => {
         it('Should update an existing object', function (done) {
             const cpuModel = updatedObject.data['CPU model']
             const hardDiskSpace = updatedObject.data['Hard disk size']
-            console.log('createdObject', createdObject)
             request(baseUrl)
                 .put(`/${newObjectId[0]}`)
                 .set('Content-Type', 'application/json')
@@ -87,7 +86,7 @@ describe('PUT', () => {
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(function (response) {
-        
+
                     // structure of response
                     expect(response.status).to.equal(200)
                     expect(response.body).to.be.an('object')
@@ -101,7 +100,6 @@ describe('PUT', () => {
                     expect(response.body.data).to.be.an('object')
 
                     // data 
-                    console.log('updatedObject', response.body.data)
                     const responseCpuModel = response.body.data['CPU model']
                     const responseHardDiskSpace = response.body.data['Hard disk size']
                     expect(response.body.name).to.equal(updatedObject.name)
@@ -121,7 +119,25 @@ describe('PUT', () => {
                     }
                     done();
                 });
-        })
+        });
+        it('Should have header in response', function (done) {
+            request(baseUrl)
+                .put(`/${newObjectId[0]}`)
+                .set('Accept', 'application/json')
+                .expect('Content-Type', /json/)
+                .expect(function (response) {
+                    expect(response.header).to.be.an('object')
+                    expect(response.header).to.have.property('content-type');
+                    expect(response.header['content-type']).to.be.equal('application/json')
+                })
+                .end(function (err) {
+                    if (err) {
+                        throw err;
+                    }
+                    done();
+                })
+
+        });
 
 
     })
