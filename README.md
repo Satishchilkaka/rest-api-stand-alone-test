@@ -1,7 +1,7 @@
 # rest-api-stand-alone-test
 
 
-# Install dependencies and run tests
+## Install dependencies and run tests
 
 You need to have Node Js installed: https://nodejs.org/en/
 
