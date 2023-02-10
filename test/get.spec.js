@@ -42,8 +42,27 @@ describe('GET', () => {
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(function (response) {
+          console.log(response)
           expect(response.body).to.be.an('array')
 
+        })
+        .end(function (err) {
+          if (err) {
+            throw err;
+          }
+          done();
+        })
+
+    });
+    it('Should have header in response', function (done) {
+      request(baseUrl)
+        .get('/')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(function (response) {
+          expect(response.header).to.be.an('object')
+          expect(response.header).to.have.property('content-type');
+          expect(response.header['content-type']).to.be.equal('application/json')
         })
         .end(function (err) {
           if (err) {
@@ -111,12 +130,29 @@ describe('GET', () => {
         .expect('Content-Type', /json/)
         .expect(200, done);
     });
+    it('Should have header in response', function (done) {
+      request(baseUrl)
+        .get('/')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(function (response) {
+          expect(response.header).to.be.an('object')
+          expect(response.header).to.have.property('content-type');
+          expect(response.header['content-type']).to.be.equal('application/json')
+        })
+        .end(function (err) {
+          if (err) {
+            throw err;
+          }
+          done();
+        })
+
+    });
     it('Should have 3 objects', function (done) {
       request(baseUrl)
         .get(`?id=${id3}&id=${id5}&id=${id10}`)
         .set('Accept', 'application/json')
         .expect(function (response) {
-          console.log(response.body)
           expect(response.body).to.eql(id3id5id10)
           // assert.strictEqual(response.body.length, 13)
         })
@@ -204,6 +240,24 @@ describe('GET', () => {
         .expect(function (response) {
           expect(response.status).to.equal(200)
         })
+    });
+    it('Should have header in response', function (done) {
+      request(baseUrl)
+        .get('/')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(function (response) {
+          expect(response.header).to.be.an('object')
+          expect(response.header).to.have.property('content-type');
+          expect(response.header['content-type']).to.be.equal('application/json')
+        })
+        .end(function (err) {
+          if (err) {
+            throw err;
+          }
+          done();
+        })
+
     });
     it('Should have 1object with keys', function (done) {
       request(baseUrl)
