@@ -42,7 +42,6 @@ describe('GET', () => {
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(function (response) {
-          console.log(response)
           expect(response.body).to.be.an('array')
 
         })
