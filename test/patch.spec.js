@@ -18,7 +18,6 @@ describe('PATCH', () => {
                 .send('()')
                 .set('Accept', 'application/json')
                 .expect(function (response) {
-                    console.log(response)
                    expect(response.statusCode).to.equal(405)
                 })
                 .end(function (err) {
