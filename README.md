@@ -1,7 +1,7 @@
 # rest-api-stand-alone-test
 
 
-# Install dependencies and run tests
+## Install dependencies and run tests
 
 You need to have Node Js installed: https://nodejs.org/en/
 
@@ -17,3 +17,18 @@ VSCode: https://code.visualstudio.com/
 ```
 npm install
 npm run test
+```
+### To open Test report
+```
+npm install
+npm run test
+cd reportDir
+open rest-api.html
+```
+### Test plan
+
+[Test plan](https://github.com/Satishchilkaka/rest-api-stand-alone-test/blob/cicd-run/test-plan/Test_Plan%20_10-02-23.docx)
+
+### Endpoint URL or project URL
+
+[Endpoint](https://restful-api.dev/)

@@ -149,7 +149,7 @@ describe('GET', () => {
     });
     it('Should have 3 objects', function (done) {
       request(baseUrl)
-        .get(`?id=${id3}&id=${id5}&id=${id10}`)
+        .get(`?id=${id3id5id10[0].id}&id=${id3id5id10[1].id}&id=${id3id5id10[2].id}`)
         .set('Accept', 'application/json')
         .expect(function (response) {
           expect(response.body).to.eql(id3id5id10)
@@ -258,7 +258,7 @@ describe('GET', () => {
         })
 
     });
-    it('Should have 1object with keys', function (done) {
+    it('Should have 1 object with keys', function (done) {
       request(baseUrl)
         .get(`/${id7.id}`)
         .set('Accept', 'application/json')
